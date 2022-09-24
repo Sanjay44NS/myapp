@@ -1,0 +1,30 @@
+<h2>Search Books</h2>
+<label>
+    Title
+    <input type="text" name="title" value="<%=book != null? book.title:''%>"/>
+</label>
+<label>
+    Author
+    <select name="author">
+        <% authors.forEach(author) => {
+            %>
+            <%if(typeof(book) !== 'undefined' && typeof(book.author) !== 'undefined' && (author.id == book.author.toString())) {%>
+                <option selected value="<%=author.id%>"><%=author.name%></option>
+            
+                <%
+        } %> 
+    </select>
+    <input type="text" value="<%=book != null? book.title:''%>"/>
+</label>
+<label>
+    Title
+    <input type="text" value="<%=book != null? book.title:''%>"/>
+</label>
+<label>
+    Title
+    <input type="text" value="<%=book != null? book.title:''%>"/>
+</label>
+<label>
+    Title
+    <input type="text" value="<%=book != null? book.title:''%>"/>
+</label>
