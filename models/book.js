@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const path = require('path')
 const coverImageBasePath = 'uploads/bookCovers'
+const fs = require('fs')
 
 const bookSchema = new mongoose.Schema({
     title: {
@@ -35,8 +36,14 @@ const bookSchema = new mongoose.Schema({
 })
 
 bookSchema.virtual('coverImagePath').get(function(){
+    
     if(this.coverImageName != null){
-        return path.join('public', coverImageBasePath, this.coverImageName)
+        //const file_buffer  = fs.readFileSync(path.join('public', coverImageBasePath, this.coverImageName))
+        //const contents_in_base64 = file_buffer.toString('base64');
+        //console.log(contents_in_base64)
+        //return path.join('/', coverImageBasePath, this.coverImageName)
+        const filePath = path.join('public', coverImageBasePath, this.coverImageName)
+        return "data:image/jpeg;base64," + fs.readFileSync(filePath, 'base64');
     }
 })
 
