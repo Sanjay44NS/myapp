@@ -1,1 +1,55 @@
-New Book
+<form action="/books" method="POST" enctype="multipart/form-data">
+    <h2>Search Books</h2>
+<div>
+    <label>
+        Title
+        <input type="text" name="title" value="<%=book != null? book.title:''%>"/>
+    </label>
+</div>
+<div>
+    <label>
+        Author
+        <select name="author">
+            <% authors.forEach(author => {
+                %>
+                <%if(typeof(book.author) !== 'undefined' && (author.id == book.author.toString())) {%>
+                    <option selected value="<%=author.id%>"><%=author.name%></option>
+                    <%}else{%>
+                        <option value="<%=author.id%>"><%=author.name%></option>
+                   <% }
+            }) %> 
+        </select>
+        
+    </label>
+</div>
+<div>
+    <label>
+        Publish Date
+        <input type="date" name="publishDate"
+        value="<%=book.publishDate != null? book.publishDate.toISOString().split("T")[0] :''%>"/>
+    </label>
+</div>
+<div>
+    <label>
+        Page Count
+        <input type="number" name="pageCount" min="1" value="<%=book != null? book.pageCount:''%>"/>
+    </label>    
+</div>
+<div>
+    <label>
+        Cover Image
+        <input type="file" name="cover" />
+    </label>    
+</div>
+<div>
+    <label>
+        Description
+        <textarea name="description"><%=book != null? book.description:''%></textarea>
+    </label>
+</div>
+<button type="submit">
+    Create
+</button>
+<a href="/books">Cancel
+</a>
+</form>
